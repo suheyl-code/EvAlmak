@@ -23,7 +23,7 @@ namespace EvAlmak.Evler
         public double DubleksFiyatHesaplama()
         {
             double toplam = EvGenelFiyatHesaplama();
-            toplam += 20_000d;
+            toplam += 30_000d;
 
             if (Bahce > 0)
             {

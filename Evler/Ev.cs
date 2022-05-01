@@ -61,7 +61,7 @@ namespace EvAlmak.Evler
 
         public double EvGenelFiyatHesaplama()
         {
-            double toplam = 20_000;
+            double toplam = 22_000d;
             if (this.Cephe.ToLower() == "guney")
             {
                 toplam += 15_000d;

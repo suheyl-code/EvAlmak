@@ -38,7 +38,22 @@ namespace EvAlmak
                     string cephe;
                     int banyo, kat, balkon, bahce, numberOfChimney;
                     bool sauna, sumine, fitness;
-                    GeneralQuestions(out cephe, out banyo, out kat, out balkon);
+                    GeneralQuestions(out cephe, out banyo, out balkon);
+                    
+                    Console.Write("Evin kaç katli olsun? ");
+                    kat = Convert.ToInt32(Console.ReadLine());
+                    if (kat > 3)
+                    {
+                        Print.WriteLine("Bir tane ev mi almak istiyorsunuz?", ConsoleColor.Red);
+                        Print.WriteLine("3 seçildi.", ConsoleColor.Green);
+                        kat = 3;
+                    }
+                    else if (kat <= 0)
+                    {
+                        Print.WriteLine("Kot seçildi.", ConsoleColor.Green);
+                        kat = 0;
+                    }
+                    
                     VillaSpecificQuestions(out bahce, out sauna, out sumine, out numberOfChimney, out fitness);
 
                     var villa = new Villa(cephe, banyo, balkon, kat, bahce, sauna, sumine, numberOfChimney, fitness);
@@ -48,7 +63,21 @@ namespace EvAlmak
                     break;
                 case 2: // Daire
                     
-                    GeneralQuestions(out cephe, out banyo, out kat, out balkon);
+                    GeneralQuestions(out cephe, out banyo, out balkon);
+
+                    Console.Write("Evin kaç katli olsun? ");
+                    kat = Convert.ToInt32(Console.ReadLine());
+                    if (kat > 3)
+                    {
+                        Print.WriteLine("Bir tane ev mi almak istiyorsunuz?", ConsoleColor.Red);
+                        Print.WriteLine("3 seçildi.", ConsoleColor.Green);
+                        kat = 3;
+                    }
+                    else if (kat <= 0)
+                    {
+                        Print.WriteLine("Kot seçildi.", ConsoleColor.Green);
+                        kat = 0;
+                    }
 
                     var daire = new Daire(cephe, banyo, kat, balkon);
 
@@ -57,8 +86,22 @@ namespace EvAlmak
                     break;
                 case 3: // Mustakil
                  
-                    GeneralQuestions(out cephe, out banyo, out kat, out balkon);
+                    GeneralQuestions(out cephe, out banyo, out balkon);
                     MustakilSpecificQuestions(out bahce);
+
+                    Console.Write("Evin kaç katli olsun? ");
+                    kat = Convert.ToInt32(Console.ReadLine());
+                    if (kat > 3)
+                    {
+                        Print.WriteLine("Bir tane ev mi almak istiyorsunuz?", ConsoleColor.Red);
+                        Print.WriteLine("3 seçildi.", ConsoleColor.Green);
+                        kat = 3;
+                    }
+                    else if (kat <= 0)
+                    {
+                        Print.WriteLine("Kot seçildi.", ConsoleColor.Green);
+                        kat = 0;
+                    }
 
                     var mustakil = new Mustakil(cephe, banyo, balkon, kat, bahce);
 
@@ -67,7 +110,7 @@ namespace EvAlmak
                     break;
                 case 4: // Dubleks
 
-                    GeneralQuestions(out cephe, out banyo, out kat, out balkon);
+                    GeneralQuestions(out cephe, out banyo, out balkon);
                     DubleksSpecificQuestions(out bahce);
 
                     var dubleks = new Dubleks(cephe, banyo, balkon, kat = 2, bahce);
@@ -81,7 +124,7 @@ namespace EvAlmak
 
         }
 
-        private static void GeneralQuestions(out string cephe, out int banyo, out int kat, out int balkon)
+        private static void GeneralQuestions(out string cephe, out int banyo, out int balkon)
         {
             Console.Write("Evin hangı cephe'de olsun (guney/kuzey)? ");
             cephe = Console.ReadLine();
@@ -98,21 +141,6 @@ namespace EvAlmak
             {
                 Print.WriteLine("1 seçildi.", ConsoleColor.Green);
                 banyo = 1;
-            }
-
-            
-            Console.Write("Evin kaç katli olsun? ");
-            kat = Convert.ToInt32(Console.ReadLine());
-            if (kat > 3)
-            {
-                Print.WriteLine("Bir tane ev mi almak istiyorsunuz?", ConsoleColor.Red);
-                Print.WriteLine("3 seçildi.", ConsoleColor.Green);
-                kat = 3;
-            }
-            else if (kat <= 0)
-            {
-                Print.WriteLine("Kot seçildi.", ConsoleColor.Green);
-                kat = 0;
             }
 
             Console.Write("Evinde kaç tane balkon olsun? ");
