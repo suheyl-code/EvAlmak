@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EvAlmak
+namespace EvAlmak.Evler
 {
     internal class Villa : Ev
     {
@@ -29,6 +29,13 @@ namespace EvAlmak
             set { _sumine = value; }
         }
 
+        private int _numberOfChimney;
+        public int NumberOfChimney
+        {
+            get { return _numberOfChimney; }
+            set { _numberOfChimney = value; }
+        }
+
         private bool _fitnessSalon;
         public bool FitnessSalon
         {
@@ -36,29 +43,45 @@ namespace EvAlmak
             set { _fitnessSalon = value; }
         }
 
-        public Villa(string cephe, int banyo, int balkon, bool kat, 
-            int bahce, bool sauna, bool sumine, bool fitness) :
+        public Villa(string cephe, int banyo, int balkon, int kat, 
+            int bahce, bool sauna, bool sumine, int numberOfChimney, bool fitness) :
             base(cephe, banyo, balkon, kat)
         {
             this.Bahce = bahce;
             this.Sauna = sauna;
             this.Sumine = sumine;
+            this.NumberOfChimney = numberOfChimney;
             this.FitnessSalon = fitness;
 
-            Console.Write("Evin hangı cephe'de olsun (güney/kozey)? ");
-
-            Console.Write("Evinde kaç tane banyo var? ");
-
-            Console.Write("Evin kaç katli olsun? ");
-
-            Console.Write("Evin kaç tane balkon var?");
         }
 
         public double VillaFiyatHesaplama()
         {
-            double EvGenelFiyatHesapla = EvGenelFiyatHesaplama();
+            double toplam = EvGenelFiyatHesaplama();
+            toplam += 40_000d;
 
-            return
+            if(Bahce > 0)
+            {
+                toplam += (Bahce * 3_000d);
+            }
+            else if(Bahce <= 0)
+            {
+                // bir şey yapma!
+            }
+
+            if (Sauna)
+                toplam += 12_000d;
+
+            if (Sumine)
+                toplam += 3_000d;
+
+            if(NumberOfChimney != 0)
+                toplam += NumberOfChimney * 5_000d;
+
+            if (FitnessSalon)
+                toplam += 18_000d;
+            
+            return toplam;
         }
     }
 }

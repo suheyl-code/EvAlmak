@@ -43,13 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Daire.cs" />
-    <Compile Include="Dubleks.cs" />
-    <Compile Include="Ev.cs" />
-    <Compile Include="Mustakil.cs" />
+    <Compile Include="ColorConsole\Print.cs" />
+    <Compile Include="Evler\Daire.cs" />
+    <Compile Include="Evler\Dubleks.cs" />
+    <Compile Include="Evler\Ev.cs" />
+    <Compile Include="Evler\Mustakil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Villa.cs" />
+    <Compile Include="Evler\Villa.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

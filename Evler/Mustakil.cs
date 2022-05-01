@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EvAlmak
+namespace EvAlmak.Evler
 {
     internal class Mustakil : Ev
     {
@@ -16,25 +16,27 @@ namespace EvAlmak
         }
 
         public Mustakil(string cephe, int banyo, 
-            int balkon, bool kat, int bahce) : 
+            int balkon, int kat, int bahce) : 
             base(cephe, banyo, balkon, kat)
         {
             this.Bahce = bahce;
-
-            Console.Write("Evin hangı cephe'de olsun (güney/kozey)? ");
-
-            Console.Write("Evinde kaç tane banyo var? ");
-
-            Console.Write("Evin kaç katli olsun? ");
-
-            Console.Write("Evin kaç tane balkon var?");
         }
 
         public double MustakilFiyatHesaplama()
         {
-            double EvGenelFiyatHesapla = EvGenelFiyatHesaplama();
+            double toplam = EvGenelFiyatHesaplama();
+            toplam += 25_000d;
 
-            return
+            if (Bahce > 0)
+            {
+                toplam += (Bahce * 3_000d);
+            }
+            else if (Bahce <= 0)
+            {
+                // bir şey yapma!
+            }
+
+            return toplam;
         }
     }
 }
