@@ -22,7 +22,7 @@ namespace EvAlmak
             Console.WriteLine("\t2. Daire");
             Console.WriteLine("\t3. Mustakil");
             Console.WriteLine("\t4. Dubleks");
-            Console.Write("Hangi? ");
+            Console.Write("Hangi numara? ");
             byte evModel = default;
             try
             {
@@ -115,7 +115,7 @@ namespace EvAlmak
                     // TODO: Bunun içerde sorulari nasıl değişibilirsin?! villa yerine dubleks sorsan?
                     VillaSpecificQuestions(out bahce, out sauna, out sumine, out numberOfChimney, out fitness);
 
-                    var dubleks = new Villa(cephe, banyo, balkon, kat=2, bahce, sauna, sumine, numberOfChimney, fitness);
+                    var dubleks = new Dubleks(cephe, banyo, balkon, bahce, sauna, sumine, numberOfChimney, fitness);
 
                     Print.WriteLine($"\n*** İstanbul'da benzer dubleks evler ortalama {dubleks.VillaFiyatHesaplama():C2} dir. ***", ConsoleColor.Blue);
 

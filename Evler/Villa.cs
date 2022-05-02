@@ -62,7 +62,7 @@ namespace EvAlmak.Evler
 
             if(Bahce > 0)
             {
-                toplam += (Bahce * 700d);
+                toplam += (Bahce * 800d);
             }
             else if(Bahce <= 0)
             {

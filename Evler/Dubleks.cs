@@ -8,8 +8,9 @@ namespace EvAlmak.Evler
 {
     internal class Dubleks : Villa
     {
-        public Dubleks(string cephe, int banyo, int balkon, int kat,
-            int bahce, bool sauna, bool sumine, int numberOfChimney, bool fitness) : base(cephe, banyo, balkon, kat, bahce, sauna, sumine, numberOfChimney, fitness)
+        public Dubleks(string cephe, int banyo, int balkon, 
+            int bahce, bool sauna, bool sumine, int numberOfChimney, bool fitness) : 
+            base(cephe, banyo, balkon, 2, bahce, sauna, sumine, numberOfChimney, fitness)
         {
 
         }
