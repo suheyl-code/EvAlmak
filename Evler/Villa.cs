@@ -55,14 +55,14 @@ namespace EvAlmak.Evler
 
         }
 
-        public double VillaFiyatHesaplama()
+        public virtual double VillaFiyatHesaplama()
         {
             double toplam = EvGenelFiyatHesaplama();
             toplam += 40_000d;
 
             if(Bahce > 0)
             {
-                toplam += (Bahce * 3_000d);
+                toplam += (Bahce * 700d);
             }
             else if(Bahce <= 0)
             {

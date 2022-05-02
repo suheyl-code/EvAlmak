@@ -6,33 +6,39 @@ using System.Threading.Tasks;
 
 namespace EvAlmak.Evler
 {
-    internal class Dubleks : Ev
+    internal class Dubleks : Villa
     {
-        private int _bahce;
-        public int Bahce
+        public Dubleks(string cephe, int banyo, int balkon, int kat,
+            int bahce, bool sauna, bool sumine, int numberOfChimney, bool fitness) : base(cephe, banyo, balkon, kat, bahce, sauna, sumine, numberOfChimney, fitness)
         {
-            get { return _bahce; }
-            set { _bahce = value; }
+
         }
 
-        public Dubleks(string cephe, int banyo, int balkon, int kat, int bahce) : base(cephe, banyo, balkon, kat)
-        {
-            this.Bahce = bahce;
-        }
-
-        public double DubleksFiyatHesaplama()
+        public override double VillaFiyatHesaplama()
         {
             double toplam = EvGenelFiyatHesaplama();
-            toplam += 30_000d;
+            toplam += 20_000d;
 
             if (Bahce > 0)
             {
-                toplam += (Bahce * 3_000d);
+                toplam += (Bahce * 700d);
             }
             else if (Bahce <= 0)
             {
-                // Hiç bir şey yapma!
+                // bir şey yapma!
             }
+
+            if (Sauna)
+                toplam += 10_000d;
+
+            if (Sumine)
+                toplam += 3_000d;
+
+            if (NumberOfChimney != 0)
+                toplam += NumberOfChimney * 5_000d;
+
+            if (FitnessSalon)
+                toplam += 15_000d;
 
             return toplam;
         }

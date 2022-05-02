@@ -111,11 +111,13 @@ namespace EvAlmak
                 case 4: // Dubleks
 
                     GeneralQuestions(out cephe, out banyo, out balkon);
-                    DubleksSpecificQuestions(out bahce);
 
-                    var dubleks = new Dubleks(cephe, banyo, balkon, kat = 2, bahce);
+                    // TODO: Bunun içerde sorulari nasıl değişibilirsin?! villa yerine dubleks sorsan?
+                    VillaSpecificQuestions(out bahce, out sauna, out sumine, out numberOfChimney, out fitness);
 
-                    Print.WriteLine($"\n*** İstanbul'da benzer dubleks evler ortalama {dubleks.DubleksFiyatHesaplama():C2} dir. ***", ConsoleColor.Blue);
+                    var dubleks = new Villa(cephe, banyo, balkon, kat=2, bahce, sauna, sumine, numberOfChimney, fitness);
+
+                    Print.WriteLine($"\n*** İstanbul'da benzer dubleks evler ortalama {dubleks.VillaFiyatHesaplama():C2} dir. ***", ConsoleColor.Blue);
 
                     break;
                 default:
@@ -203,10 +205,5 @@ namespace EvAlmak
             bahce = Convert.ToInt32(Console.ReadLine());
         }
 
-        private static void DubleksSpecificQuestions(out int bahce)
-        {
-            Console.Write("Dubleks Evlerinizin bahçesi kaç m2 olsun? ");
-            bahce = Convert.ToInt32(Console.ReadLine());
-        }
     }
 }
