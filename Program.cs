@@ -123,11 +123,12 @@ namespace EvAlmak
                 default:
                     break;
             }
-
         }
 
         private static void GeneralQuestions(out string cephe, out int banyo, out int balkon)
         {
+            Console.Clear();
+            Print.WriteLine("<- İstanbul'da ev fiyatları tahmin sistemine hoş geldiniz ->", ConsoleColor.Green);
             Console.Write("Evin hangı cephe'de olsun (guney/kuzey)? ");
             cephe = Console.ReadLine();
 
@@ -163,17 +164,17 @@ namespace EvAlmak
 
         private static void VillaSpecificQuestions(out int bahce, out bool sauna, out bool sumine, out int numberOfChimney, out bool fitness)
         {
-            Console.Write("Villaniz bahçesi kaç m2 olsun? ");
+            Console.Write("Eviniz bahçesi kaç m2 olsun? ");
             bahce = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Villanız içerde Sauna olsun mu? (Evet/Hayır) ");
+            Console.Write("Eviniz içerde Sauna olsun mu? (Evet/Hayır) ");
             string answer = Console.ReadLine();
             if (answer.ToLower() == "evet")
                 sauna = true;
             else
                 sauna = false;
 
-            Console.Write("Villanız içerde Şumine olsun mu? (Evet/Hayır) ");
+            Console.Write("Eviniz içerde Şumine olsun mu? (Evet/Hayır) ");
             string nextAnswer = Console.ReadLine();
             if (nextAnswer.ToLower() == "evet")
             {
@@ -191,7 +192,7 @@ namespace EvAlmak
                 numberOfChimney = 0;
             }
 
-            Console.Write("Villanız içerde Fitness Salonu olsun mu? (Evet/Hayır) ");
+            Console.Write("Eviniz içerde Fitness Salonu olsun mu? (Evet/Hayır) ");
             string anotherAnswer = Console.ReadLine();
             if (anotherAnswer.ToLower() == "evet")
                 fitness = true;
@@ -201,7 +202,7 @@ namespace EvAlmak
 
         private static void MustakilSpecificQuestions(out int bahce)
         {
-            Console.Write("Mustakil Evlerinizin bahçesi kaç m2 olsun? ");
+            Console.Write("Mustakil Evinizin bahçesi kaç m2 olsun? ");
             bahce = Convert.ToInt32(Console.ReadLine());
         }
 
