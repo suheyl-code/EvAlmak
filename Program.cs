@@ -2,6 +2,7 @@
 using EvAlmak.Evler;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,9 @@ namespace EvAlmak
             Console.WriteLine("\t4. Dubleks");
             Console.Write("Hangi numara? ");
             byte evModel = default;
+            string cephe;
+            int banyo, kat, balkon, bahce, numberOfChimney;
+            bool sauna, sumine, fitness;
             try
             {
                 evModel = Convert.ToByte(Console.ReadLine());
@@ -35,11 +39,9 @@ namespace EvAlmak
             switch (evModel)
             {
                 case 1: // Villa
-                    string cephe;
-                    int banyo, kat, balkon, bahce, numberOfChimney;
-                    bool sauna, sumine, fitness;
+
                     GeneralQuestions(out cephe, out banyo, out balkon);
-                    
+
                     Console.Write("Evin kaç katli olsun? ");
                     kat = Convert.ToInt32(Console.ReadLine());
                     if (kat > 3)
@@ -53,16 +55,18 @@ namespace EvAlmak
                         Print.WriteLine("Kot seçildi.", ConsoleColor.Green);
                         kat = 0;
                     }
-                    
+
                     VillaSpecificQuestions(out bahce, out sauna, out sumine, out numberOfChimney, out fitness);
 
                     var villa = new Villa(cephe, banyo, balkon, kat, bahce, sauna, sumine, numberOfChimney, fitness);
+                    var fiyat = villa.VillaFiyatHesaplama();
+                    Print.WriteLine($"\n*** İstanbul'da benzer villalar ortalama {fiyat:C2} dir. ***", ConsoleColor.Blue);
 
-                    Print.WriteLine($"\n*** İstanbul'da benzer villalar ortalama {villa.VillaFiyatHesaplama():C2} dir. ***", ConsoleColor.Blue);
+                    WriteToSQLTable(bahce, banyo, balkon, sumine, fitness, kat, fiyat);
 
                     break;
                 case 2: // Daire
-                    
+
                     GeneralQuestions(out cephe, out banyo, out balkon);
 
                     Console.Write("Evin kaç katli olsun? ");
@@ -85,7 +89,7 @@ namespace EvAlmak
 
                     break;
                 case 3: // Mustakil
-                 
+
                     GeneralQuestions(out cephe, out banyo, out balkon);
                     MustakilSpecificQuestions(out bahce);
 
@@ -112,7 +116,6 @@ namespace EvAlmak
 
                     GeneralQuestions(out cephe, out banyo, out balkon);
 
-                    // TODO: Bunun içerde sorulari nasıl değişibilirsin?! villa yerine dubleks sorsan?
                     VillaSpecificQuestions(out bahce, out sauna, out sumine, out numberOfChimney, out fitness);
 
                     var dubleks = new Dubleks(cephe, banyo, balkon, bahce, sauna, sumine, numberOfChimney, fitness);
@@ -122,7 +125,10 @@ namespace EvAlmak
                     break;
                 default:
                     break;
+
+
             }
+
         }
 
         private static void GeneralQuestions(out string cephe, out int banyo, out int balkon)
@@ -140,7 +146,7 @@ namespace EvAlmak
                 Print.WriteLine("3 seçildi.", ConsoleColor.Green);
                 banyo = 3;
             }
-            else if(banyo <= 0)
+            else if (banyo <= 0)
             {
                 Print.WriteLine("1 seçildi.", ConsoleColor.Green);
                 banyo = 1;
@@ -204,6 +210,61 @@ namespace EvAlmak
         {
             Console.Write("Mustakil Evinizin bahçesi kaç m2 olsun? ");
             bahce = Convert.ToInt32(Console.ReadLine());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private static SqlConnection SetSQLConnection()
+        {
+            var deviceName = Environment.MachineName.ToString();
+            string dataSource = default;
+            if (deviceName.ToLower().Equals("asus"))
+            {
+                dataSource = @"Asus\SQLEXPRESS";
+
+            }
+            else if (deviceName.ToLower().Equals("lenovothinkbook"))
+            {
+                dataSource = @"LenovoThinkbook\SQLEXPRESS";
+            }
+            string dataBase = "EvAlmak";
+            string connectionString = @"Data Source=" + dataSource + ";Initial Catalog=" + dataBase + ";Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                Print.WriteLine("\tSQL bağlantısı kuruldu...", ConsoleColor.Yellow);
+            }
+            catch (Exception e)
+            {
+                Print.WriteLine("SQL bağlantısında hata var!" + e.Message, ConsoleColor.Red);
+            }
+            return connection;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bahce"></param>
+        /// <param name="banyo"></param>
+        /// <param name="balkon"></param>
+        /// <param name="sumine"></param>
+        /// <param name="fitness"></param>
+        /// <param name="kat"></param>
+        /// <param name="fiyat"></param>
+        private static void WriteToSQLTable(int bahce, int banyo, int balkon, bool sumine, bool fitness, int kat, double fiyat)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append("Insert into Elements (Size,Bath,Balcony,Chimney,Fitness,Floor,Price) Values");
+            stringBuilder.Append($"(N'{bahce}',N'{banyo}',N'{balkon}',N'{sumine}',N'{fitness}',N'{kat}',N'{fiyat}')");
+            string sqlQuery = stringBuilder.ToString();
+
+            using (SqlCommand command = new SqlCommand(sqlQuery, SetSQLConnection()))
+            {
+                command.ExecuteNonQuery();
+                Print.WriteLine("verileriniz başarıyla veritabanına eklendi", ConsoleColor.Yellow);
+            }
         }
 
     }
