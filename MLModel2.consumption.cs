@@ -7,14 +7,20 @@ using System.IO;
 using System.Collections.Generic;
 namespace EvAlmak
 {
-    public partial class MLModel1
+    public partial class MLModel2
     {
         /// <summary>
-        /// model input class for MLModel1.
+        /// model input class for MLModel2.
         /// </summary>
         #region model input class
         public class ModelInput
         {
+            [ColumnName(@"Floor")]
+            public float Floor { get; set; }
+
+            [ColumnName(@"Direction")]
+            public string Direction { get; set; }
+
             [ColumnName(@"Size")]
             public float Size { get; set; }
 
@@ -24,14 +30,17 @@ namespace EvAlmak
             [ColumnName(@"Balcony")]
             public float Balcony { get; set; }
 
+            [ColumnName(@"Sauna")]
+            public string Sauna { get; set; }
+
             [ColumnName(@"Chimney")]
             public string Chimney { get; set; }
 
+            [ColumnName(@"NumberOfChimney")]
+            public float NumberOfChimney { get; set; }
+
             [ColumnName(@"Fitness")]
             public string Fitness { get; set; }
-
-            [ColumnName(@"Floor")]
-            public float Floor { get; set; }
 
             [ColumnName(@"Price")]
             public float Price { get; set; }
@@ -41,7 +50,7 @@ namespace EvAlmak
         #endregion
 
         /// <summary>
-        /// model output class for MLModel1.
+        /// model output class for MLModel2.
         /// </summary>
         #region model output class
         public class ModelOutput
@@ -50,7 +59,7 @@ namespace EvAlmak
         }
         #endregion
 
-        private static string MLNetModelPath = Path.GetFullPath("MLModel1.zip");
+        private static string MLNetModelPath = Path.GetFullPath("MLModel2.zip");
 
         public static readonly Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(() => CreatePredictEngine(), true);
 

@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.ML.Data;
-using Microsoft.ML.Trainers.FastTree;
 using Microsoft.ML.Trainers;
 using Microsoft.ML;
 
 namespace EvAlmak
 {
-    public partial class MLModel1
+    public partial class MLModel2
     {
         public static ITransformer RetrainPipeline(MLContext context, IDataView trainData)
         {
@@ -29,11 +28,14 @@ namespace EvAlmak
         public static IEstimator<ITransformer> BuildPipeline(MLContext mlContext)
         {
             // Data process configuration with pipeline data transformations
-            var pipeline = mlContext.Transforms.ReplaceMissingValues(new []{new InputOutputColumnPair(@"Size", @"Size"),new InputOutputColumnPair(@"Bath", @"Bath"),new InputOutputColumnPair(@"Balcony", @"Balcony"),new InputOutputColumnPair(@"Floor", @"Floor")})      
+            var pipeline = mlContext.Transforms.ReplaceMissingValues(new []{new InputOutputColumnPair(@"Floor", @"Floor"),new InputOutputColumnPair(@"Size", @"Size"),new InputOutputColumnPair(@"Bath", @"Bath"),new InputOutputColumnPair(@"Balcony", @"Balcony"),new InputOutputColumnPair(@"NumberOfChimney", @"NumberOfChimney")})      
+                                    .Append(mlContext.Transforms.Text.FeaturizeText(@"Direction", @"Direction"))      
+                                    .Append(mlContext.Transforms.Text.FeaturizeText(@"Sauna", @"Sauna"))      
                                     .Append(mlContext.Transforms.Text.FeaturizeText(@"Chimney", @"Chimney"))      
                                     .Append(mlContext.Transforms.Text.FeaturizeText(@"Fitness", @"Fitness"))      
-                                    .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"Size",@"Bath",@"Balcony",@"Floor",@"Chimney",@"Fitness"}))      
-                                    .Append(mlContext.Regression.Trainers.FastTree(new FastTreeRegressionTrainer.Options(){NumberOfLeaves=4,MinimumExampleCountPerLeaf=13,NumberOfTrees=4,MaximumBinCountPerFeature=121,LearningRate=0.0364712285744316F,FeatureFraction=0.919689084468668F,LabelColumnName=@"Price",FeatureColumnName=@"Features"}));
+                                    .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"Floor",@"Size",@"Bath",@"Balcony",@"NumberOfChimney",@"Direction",@"Sauna",@"Chimney",@"Fitness"}))      
+                                    .Append(mlContext.Transforms.NormalizeMinMax(@"Features", @"Features"))      
+                                    .Append(mlContext.Regression.Trainers.Sdca(l1Regularization:0.238669003936794F,l2Regularization:75.8983178060286F,labelColumnName:@"Price",featureColumnName:@"Features"));
 
             return pipeline;
         }

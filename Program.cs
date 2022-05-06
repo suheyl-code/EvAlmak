@@ -244,6 +244,8 @@ namespace EvAlmak
                 bahce = 15;
                 Print.WriteLine("15 m2 seçildi.", ConsoleColor.Green);
             }
+            if(bahce < 0)
+                bahce = -bahce;
 
             Console.Write("Eviniz içerde Sauna olsun mu? (Evet/Hayır) ");
             string answer = Console.ReadLine();

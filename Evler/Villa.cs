@@ -12,7 +12,13 @@ namespace EvAlmak.Evler
         public int Bahce
         {
             get { return _bahce; }
-            set { _bahce = value; }
+            set 
+            {
+                if (value < 0)
+                    _bahce = 0;
+                else
+                    _bahce = value; 
+            }
         }
 
         private bool _sauna;

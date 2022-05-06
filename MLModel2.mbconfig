@@ -1,0 +1,221 @@
+﻿{
+  "TrainingTime": 60,
+  "Scenario": "Regression",
+  "DataSource": {
+    "Type": "SQL",
+    "Version": 1,
+    "ColumnProperties": [
+      {
+        "ColumnName": "Floor",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Direction",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Size",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Bath",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Balcony",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Sauna",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Chimney",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "NumberOfChimney",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Fitness",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Price",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      }
+    ],
+    "ConnectionString": "Data Source=LENOVOTHINKBOOK\\SQLEXPRESS;Initial Catalog=EvAlmak;Integrated Security=True",
+    "CommandString": "SELECT CAST(Floor as REAL), Direction, CAST(Size as REAL), CAST(Bath as REAL), CAST(Balcony as REAL), Sauna, Chimney, CAST(NumberOfChimney as REAL), Fitness, CAST(Price as REAL) FROM [dbo].[Dubleks]",
+    "DatabaseName": "EvAlmak",
+    "SelectedTableDbo": "dbo",
+    "TableName": "Dubleks"
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 0,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastForestRegression",
+        "Score": 0.0,
+        "RuntimeInSeconds": 0.68199998140335083
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastTreeRegression",
+        "Score": -3306672.2558505018,
+        "RuntimeInSeconds": 0.62699997425079346
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastTreeTweedieRegression",
+        "Score": -3306493.7762205005,
+        "RuntimeInSeconds": 0.70099997520446777
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LightGbmRegression",
+        "Score": -27580.271153420908,
+        "RuntimeInSeconds": 0.56099998950958252
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaRegression",
+        "Score": 5140452.2066265745,
+        "RuntimeInSeconds": 2.9820001125335693
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LbfgsPoissonRegressionRegression",
+        "Score": 147917.48042994278,
+        "RuntimeInSeconds": 0.50099998712539673
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaRegression",
+        "Score": 6064757.54387894,
+        "RuntimeInSeconds": 2.9360001087188721
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaRegression",
+        "Score": 7019210.4492011219,
+        "RuntimeInSeconds": 3.2000000476837158
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaRegression",
+        "Score": 6997410.3390598465,
+        "RuntimeInSeconds": 3.8169999122619629
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaRegression",
+        "Score": 6951758.0281372322,
+        "RuntimeInSeconds": 4.1909999847412109
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaRegression",
+        "Score": 4877777.174111126,
+        "RuntimeInSeconds": 4.7230000495910645
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaRegression",
+        "Score": 6073545.3141370816,
+        "RuntimeInSeconds": 17.260000228881836
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaRegression",
+        "Score": 6910297.4420984881,
+        "RuntimeInSeconds": 3.51200008392334
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaRegression",
+        "Score": 6794611.9281192347,
+        "RuntimeInSeconds": 2.9449999332427979
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaRegression",
+        "Score": 6369811.9805323053,
+        "RuntimeInSeconds": 5.7709999084472656
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaRegression",
+        "Score": 5643805.0092562949,
+        "RuntimeInSeconds": 2.9170000553131104
+      }
+    ],
+    "Pipeline": "[{\"EstimatorType\":\"ReplaceMissingValues\",\"Inputs\":[\"Floor\",\"Size\",\"Bath\",\"Balcony\",\"NumberOfChimney\"],\"Outputs\":[\"Floor\",\"Size\",\"Bath\",\"Balcony\",\"NumberOfChimney\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Direction\"],\"Outputs\":[\"Direction\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Sauna\"],\"Outputs\":[\"Sauna\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Chimney\"],\"Outputs\":[\"Chimney\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Fitness\"],\"Outputs\":[\"Fitness\"]},{\"EstimatorType\":\"Concatenate\",\"Inputs\":[\"Floor\",\"Size\",\"Bath\",\"Balcony\",\"NumberOfChimney\",\"Direction\",\"Sauna\",\"Chimney\",\"Fitness\"],\"Outputs\":[\"Features\"]},{\"EstimatorType\":\"NormalizeMinMax\",\"Inputs\":[\"Features\"],\"Outputs\":[\"Features\"]},{\"LabelColumnName\":\"Price\",\"FeatureColumnName\":\"Features\",\"L1Regularization\":\"0.238669003936794\",\"L2Regularization\":\"75.8983178060286\",\"EstimatorType\":\"SdcaRegression\",\"Inputs\":[\"Price\"],\"Outputs\":[\"Features\"]}]",
+    "MetricName": "RSquared"
+  },
+  "Type": "TrainingConfig",
+  "Version": 1
+}
