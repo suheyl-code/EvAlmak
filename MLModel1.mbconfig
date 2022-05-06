@@ -1,0 +1,134 @@
+﻿{
+  "TrainingTime": 60,
+  "Scenario": "Regression",
+  "DataSource": {
+    "Type": "SQL",
+    "Version": 1,
+    "ColumnProperties": [
+      {
+        "ColumnName": "Size",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Bath",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Balcony",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Chimney",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Fitness",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Floor",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Price",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      }
+    ],
+    "ConnectionString": "Data Source=Asus\\SQLEXPRESS;Initial Catalog=EvAlmak;Integrated Security=True",
+    "CommandString": "SELECT CAST(Size as REAL), CAST(Bath as REAL), CAST(Balcony as REAL), Chimney, Fitness, CAST(Floor as REAL), CAST(Price as REAL) FROM [dbo].[Elements]",
+    "DatabaseName": "EvAlmak",
+    "SelectedTableDbo": "dbo",
+    "TableName": "Elements"
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 0,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastForestRegression",
+        "Score": 0.0,
+        "RuntimeInSeconds": 5.6659998893737793
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LightGbmRegression",
+        "Score": 2376562.5714580705,
+        "RuntimeInSeconds": 0.77899998426437378
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastTreeTweedieRegression",
+        "Score": 24413671.471858628,
+        "RuntimeInSeconds": 6.4829998016357422
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastTreeRegression",
+        "Score": 24414062.095289972,
+        "RuntimeInSeconds": 5.8039999008178711
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaRegression",
+        "Score": 1726572.1840222527,
+        "RuntimeInSeconds": 23.318000793457031
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastTreeRegression",
+        "Score": 24414062.095289972,
+        "RuntimeInSeconds": 5.9559998512268066
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastTreeTweedieRegression",
+        "Score": 24413671.471858628,
+        "RuntimeInSeconds": 5.63700008392334
+      }
+    ],
+    "Pipeline": "[{\"EstimatorType\":\"ReplaceMissingValues\",\"Inputs\":[\"Size\",\"Bath\",\"Balcony\",\"Floor\"],\"Outputs\":[\"Size\",\"Bath\",\"Balcony\",\"Floor\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Chimney\"],\"Outputs\":[\"Chimney\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Fitness\"],\"Outputs\":[\"Fitness\"]},{\"EstimatorType\":\"Concatenate\",\"Inputs\":[\"Size\",\"Bath\",\"Balcony\",\"Floor\",\"Chimney\",\"Fitness\"],\"Outputs\":[\"Features\"]},{\"LabelColumnName\":\"Price\",\"FeatureColumnName\":\"Features\",\"NumberOfLeaves\":\"4\",\"MinimumExampleCountPerLeaf\":\"13\",\"NumberOfTrees\":\"4\",\"LearningRate\":\"0.0364712285744316\",\"FeatureFraction\":\"0.919689084468668\",\"MaximumBinCountPerFeature\":\"121\",\"EstimatorType\":\"FastTreeRegression\",\"Inputs\":[\"Price\"],\"Outputs\":[\"Features\"]}]",
+    "MetricName": "RSquared"
+  },
+  "Type": "TrainingConfig",
+  "Version": 1
+}

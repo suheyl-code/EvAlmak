@@ -58,6 +58,7 @@ namespace EvAlmak.Evler
         public virtual double VillaFiyatHesaplama()
         {
             double toplam = EvGenelFiyatHesaplama();
+            // Villa fiyat başlangiç seviyesi
             toplam += 40_000d;
 
             if(Bahce > 0)
@@ -66,7 +67,7 @@ namespace EvAlmak.Evler
             }
             else if(Bahce <= 0)
             {
-                // bir şey yapma!
+                // hiçbir şey yapma!
             }
 
             if (Sauna)
@@ -77,6 +78,8 @@ namespace EvAlmak.Evler
 
             if(NumberOfChimney != 0)
                 toplam += NumberOfChimney * 5_000d;
+            else
+                // Hiçbir Şey Yapma!
 
             if (FitnessSalon)
                 toplam += 18_000d;

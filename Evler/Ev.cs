@@ -15,12 +15,12 @@ namespace EvAlmak.Evler
             get { return _cephe; }
             set
             {
-                if (value.ToLower().Contains("guney"))
+                if (value.ToLower().Contains("north"))
                     _cephe = value;
-                else if (value.ToLower().Contains("kuzey"))
+                else if (value.ToLower().Contains("south"))
                     _cephe = value;
                 else
-                    _cephe = "hicbiri";
+                    _cephe = String.Empty;
             }
         }
 
@@ -56,29 +56,30 @@ namespace EvAlmak.Evler
             this.Balkon = balkon;
             this.Kat = kat;
 
-
         }
 
         public double EvGenelFiyatHesaplama()
         {
             double toplam = 22_000d;
-            if (this.Cephe.ToLower() == "guney")
+            if (this.Cephe.ToLower() == "north")
             {
                 toplam += 15_000d;
             }
-            else if (this.Cephe.ToLower() == "kuzey")
+            else if (this.Cephe.ToLower() == "south")
             {
                 toplam += 10_000d;
             }
             else
             {
-                toplam += 5_000d;
+                toplam += 6_000d;
             }
 
             if (this.Banyo > 1)
             {
-                toplam += (Banyo * 2_000d);
+                toplam += (Banyo * 2_500d);
             }
+            else
+                toplam += 2_000d;
 
             if (this.Balkon == 1)
             {
@@ -89,7 +90,7 @@ namespace EvAlmak.Evler
                 toplam += (Balkon * 2_000d);
             }
 
-            if (this.Kat > 1)
+            if (this.Kat >= 1)
             {
                 toplam += (Kat * 30_000d);
             }

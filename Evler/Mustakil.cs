@@ -25,15 +25,16 @@ namespace EvAlmak.Evler
         public double MustakilFiyatHesaplama()
         {
             double toplam = EvGenelFiyatHesaplama();
+            // Mustakil fiyat başlangiç seviyesi
             toplam += 25_000d;
 
             if (Bahce > 0)
             {
-                toplam += (Bahce * 3_000d);
+                toplam += (Bahce * 500d);
             }
             else if (Bahce <= 0)
             {
-                // bir şey yapma!
+                // Hiçbir şey yapma!
             }
 
             return toplam;

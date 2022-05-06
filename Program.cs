@@ -43,7 +43,16 @@ namespace EvAlmak
                     GeneralQuestions(out cephe, out banyo, out balkon);
 
                     Console.Write("Evin kaç katli olsun? ");
-                    kat = Convert.ToInt32(Console.ReadLine());
+                    try
+                    {
+                        kat = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (Exception)
+                    {
+                        kat = 1;
+                        Print.WriteLine("1 seçildi.", ConsoleColor.Green);
+                    }
+
                     if (kat > 3)
                     {
                         Print.WriteLine("Bir tane ev mi almak istiyorsunuz?", ConsoleColor.Red);
@@ -62,7 +71,7 @@ namespace EvAlmak
                     var fiyat = villa.VillaFiyatHesaplama();
                     Print.WriteLine($"\n*** İstanbul'da benzer villalar ortalama {fiyat:C2} dir. ***", ConsoleColor.Blue);
 
-                    WriteToSQLTable(bahce, banyo, balkon, sumine, fitness, kat, fiyat);
+                    WriteToSQLTableVila(cephe, bahce, banyo, balkon, sauna, sumine, numberOfChimney, fitness, kat, fiyat);
 
                     break;
                 case 2: // Daire
@@ -70,7 +79,16 @@ namespace EvAlmak
                     GeneralQuestions(out cephe, out banyo, out balkon);
 
                     Console.Write("Evin kaç katli olsun? ");
-                    kat = Convert.ToInt32(Console.ReadLine());
+                    try
+                    {
+                        kat = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (Exception)
+                    {
+                        kat = 1;
+                        Print.WriteLine("1 seçildi.", ConsoleColor.Green);
+                    }
+                   
                     if (kat > 3)
                     {
                         Print.WriteLine("Bir tane ev mi almak istiyorsunuz?", ConsoleColor.Red);
@@ -84,8 +102,10 @@ namespace EvAlmak
                     }
 
                     var daire = new Daire(cephe, banyo, kat, balkon);
+                    fiyat = daire.DaireFiyatHesaplama();
+                    Print.WriteLine($"\n*** İstanbul'da benzer daireler ortalama {fiyat:C2} dir. ***", ConsoleColor.Blue);
 
-                    Print.WriteLine($"\n*** İstanbul'da benzer daireler ortalama {daire.DaireFiyatHesaplama():C2} dir. ***", ConsoleColor.Blue);
+                    WriteToSQLTableDaire(cephe, banyo, balkon, kat, fiyat);
 
                     break;
                 case 3: // Mustakil
@@ -94,7 +114,16 @@ namespace EvAlmak
                     MustakilSpecificQuestions(out bahce);
 
                     Console.Write("Evin kaç katli olsun? ");
-                    kat = Convert.ToInt32(Console.ReadLine());
+                    try
+                    {
+                        kat = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (Exception)
+                    {
+                        kat = 1;
+                        Print.WriteLine("1 seçildi.", ConsoleColor.Green);
+                    }
+
                     if (kat > 3)
                     {
                         Print.WriteLine("Bir tane ev mi almak istiyorsunuz?", ConsoleColor.Red);
@@ -108,25 +137,27 @@ namespace EvAlmak
                     }
 
                     var mustakil = new Mustakil(cephe, banyo, balkon, kat, bahce);
+                    fiyat = mustakil.MustakilFiyatHesaplama();
+                    Print.WriteLine($"\n*** İstanbul'da benzer Mustakil evler ortalama {fiyat:C2} dir. ***", ConsoleColor.Blue);
 
-                    Print.WriteLine($"\n*** İstanbul'da benzer Mustakil evler ortalama {mustakil.MustakilFiyatHesaplama():C2} dir. ***", ConsoleColor.Blue);
+                    WriteToSQLTableMustakil(cephe, bahce, banyo, balkon, kat, fiyat);
 
                     break;
                 case 4: // Dubleks
 
                     GeneralQuestions(out cephe, out banyo, out balkon);
-
                     VillaSpecificQuestions(out bahce, out sauna, out sumine, out numberOfChimney, out fitness);
+                    
+                    kat = 2;
 
                     var dubleks = new Dubleks(cephe, banyo, balkon, bahce, sauna, sumine, numberOfChimney, fitness);
+                    fiyat = dubleks.VillaFiyatHesaplama();
+                    Print.WriteLine($"\n*** İstanbul'da benzer dubleks evler ortalama {fiyat:C2} dir. ***", ConsoleColor.Blue);
 
-                    Print.WriteLine($"\n*** İstanbul'da benzer dubleks evler ortalama {dubleks.VillaFiyatHesaplama():C2} dir. ***", ConsoleColor.Blue);
-
+                    WriteToSQLTableDubleks(kat, cephe, bahce, banyo, balkon, sauna, sumine, numberOfChimney, fitness, fiyat);
                     break;
                 default:
                     break;
-
-
             }
 
         }
@@ -136,10 +167,34 @@ namespace EvAlmak
             Console.Clear();
             Print.WriteLine("<- İstanbul'da ev fiyatları tahmin sistemine hoş geldiniz ->", ConsoleColor.Green);
             Console.Write("Evin hangı cephe'de olsun (guney/kuzey)? ");
-            cephe = Console.ReadLine();
+            try
+            {
+                cephe = Console.ReadLine();
+            }
+            catch (Exception)
+            {
+                cephe = "South";
+                Print.WriteLine("'kuzey' seçildi.", ConsoleColor.Green);
+            }
+
+            if (cephe.ToLower().StartsWith("g"))
+                cephe = "North";
+            else if (cephe.ToLower().StartsWith("k"))
+                cephe = "South";
+            else
+                cephe = "Unknown";
 
             Console.Write("Evinde kaç tane banyo olsun? ");
-            banyo = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                banyo = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (Exception)
+            {
+                banyo = 1;
+                Print.WriteLine("1 seçildi.", ConsoleColor.Green);
+            }
+
             if (banyo > 5)
             {
                 Print.WriteLine("Bu kadar banyo bir evde bulamaz mı?!", ConsoleColor.Red);
@@ -153,7 +208,16 @@ namespace EvAlmak
             }
 
             Console.Write("Evinde kaç tane balkon olsun? ");
-            balkon = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                balkon = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (Exception)
+            {
+                balkon = 0;
+                Print.WriteLine("0 seçildi.", ConsoleColor.Green);
+            }
+
             if (balkon > 5)
             {
                 Print.WriteLine("Bu kadar balkon bir evde bulamaz mı?!", ConsoleColor.Red);
@@ -171,7 +235,15 @@ namespace EvAlmak
         private static void VillaSpecificQuestions(out int bahce, out bool sauna, out bool sumine, out int numberOfChimney, out bool fitness)
         {
             Console.Write("Eviniz bahçesi kaç m2 olsun? ");
-            bahce = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                bahce = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (Exception)
+            {
+                bahce = 15;
+                Print.WriteLine("15 m2 seçildi.", ConsoleColor.Green);
+            }
 
             Console.Write("Eviniz içerde Sauna olsun mu? (Evet/Hayır) ");
             string answer = Console.ReadLine();
@@ -185,12 +257,22 @@ namespace EvAlmak
             if (nextAnswer.ToLower() == "evet")
             {
                 sumine = true;
+                int kacSumine = default;
                 Console.Write("kaç tane? ");
-                int kacSumine = Convert.ToInt32(Console.ReadLine());
+                try
+                {
+                    kacSumine = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    numberOfChimney = 1;
+                    Print.WriteLine("1 seçildi.", ConsoleColor.Green);
+                }
+                
                 if (kacSumine > 0)
                     numberOfChimney = kacSumine;
                 else
-                    numberOfChimney = 0;
+                    numberOfChimney = 1;
             }
             else
             {
@@ -202,6 +284,8 @@ namespace EvAlmak
             string anotherAnswer = Console.ReadLine();
             if (anotherAnswer.ToLower() == "evet")
                 fitness = true;
+            else if(string.IsNullOrEmpty(anotherAnswer))
+                fitness = false;
             else
                 fitness = false;
         }
@@ -209,7 +293,16 @@ namespace EvAlmak
         private static void MustakilSpecificQuestions(out int bahce)
         {
             Console.Write("Mustakil Evinizin bahçesi kaç m2 olsun? ");
-            bahce = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                bahce = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (Exception)
+            {
+                bahce = 0;
+                Print.WriteLine("Hiç Bahçe m2 Seçilmedi!", ConsoleColor.Green);
+            }
+            
         }
 
         /// <summary>
@@ -228,6 +321,10 @@ namespace EvAlmak
             {
                 dataSource = @"LenovoThinkbook\SQLEXPRESS";
             }
+            else
+            {
+                dataSource = @"(localdb)\SQLEXPRESS";
+            }
             string dataBase = "EvAlmak";
             string connectionString = @"Data Source=" + dataSource + ";Initial Catalog=" + dataBase + ";Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             SqlConnection connection = new SqlConnection(connectionString);
@@ -244,20 +341,18 @@ namespace EvAlmak
         }
 
         /// <summary>
-        /// 
+        /// Normal daire için, veritabanilar farkli
         /// </summary>
-        /// <param name="bahce"></param>
+        /// <param name="cephe"></param>
         /// <param name="banyo"></param>
         /// <param name="balkon"></param>
-        /// <param name="sumine"></param>
-        /// <param name="fitness"></param>
         /// <param name="kat"></param>
         /// <param name="fiyat"></param>
-        private static void WriteToSQLTable(int bahce, int banyo, int balkon, bool sumine, bool fitness, int kat, double fiyat)
+        private static void WriteToSQLTableDaire(params object[] elements)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Insert into Elements (Size,Bath,Balcony,Chimney,Fitness,Floor,Price) Values");
-            stringBuilder.Append($"(N'{bahce}',N'{banyo}',N'{balkon}',N'{sumine}',N'{fitness}',N'{kat}',N'{fiyat}')");
+            stringBuilder.Append($"Insert into Daire (Direction,Bath,Balcony,Floor,Price) Values");
+            stringBuilder.Append($"(N'{elements[0]}',N'{elements[1]}',N'{elements[2]}',N'{elements[3]}',N'{elements[4]}')");
             string sqlQuery = stringBuilder.ToString();
 
             using (SqlCommand command = new SqlCommand(sqlQuery, SetSQLConnection()))
@@ -267,5 +362,69 @@ namespace EvAlmak
             }
         }
 
+        /// <summary>
+        /// Villa için, veritabanilar farkli
+        /// </summary>
+        /// <param name="bahce"></param>
+        /// <param name="banyo"></param>
+        /// <param name="balkon"></param>
+        /// <param name="sumine"></param>
+        /// <param name="fitness"></param>
+        /// <param name="kat"></param>
+        /// <param name="fiyat"></param>
+        private static void WriteToSQLTableVila(params object[] elements)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append("Insert into Vila (Direction,Size,Bath,Balcony,Sauna,Chimney,NumberOfChimney,Fitness,Floor,Price) Values");
+            stringBuilder.Append($"(N'{elements[0]}',N'{elements[1]}',N'{elements[2]}',N'{elements[3]}',N'{elements[4]}',N'{elements[5]}',N'{elements[6]}',N'{elements[7]}',N'{elements[8]}',N'{elements[9]}')");
+            string sqlQuery = stringBuilder.ToString();
+
+            using (SqlCommand command = new SqlCommand(sqlQuery, SetSQLConnection()))
+            {
+                command.ExecuteNonQuery();
+                Print.WriteLine("verileriniz başarıyla veritabanına eklendi", ConsoleColor.Yellow);
+            }
+        }
+
+        /// <summary>
+        /// Mustakil için, veritabanilar farkli
+        /// </summary>
+        /// <param name="elements"></param>
+        private static void WriteToSQLTableMustakil(params object[] elements)
+        {
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append("Insert into Mustakil (Direction,Size,Bath,Balcony,Floor,Price) Values");
+                stringBuilder.Append($"(N'{elements[0]}',N'{elements[1]}',N'{elements[2]}',N'{elements[3]}',N'{elements[4]}',N'{elements[5]}')");
+                string sqlQuery = stringBuilder.ToString();
+
+                using (SqlCommand command = new SqlCommand(sqlQuery, SetSQLConnection()))
+                {
+                    command.ExecuteNonQuery();
+                    Print.WriteLine("verileriniz başarıyla veritabanına eklendi", ConsoleColor.Yellow);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Dubleks için, veritabanilar farkli
+        /// </summary>
+        /// <param name="kat"></param>
+        /// <param name="elements"></param>
+        private static void WriteToSQLTableDubleks(params object[] elements)
+        {
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append("Insert into Dubleks (Floor,Direction,Size,Bath,Balcony,Sauna,Chimney,NumberOfChimney,Fitness,Price) Values");
+                stringBuilder.Append($"(N'{elements[0]}',N'{elements[1]}',N'{elements[2]}',N'{elements[3]}',N'{elements[4]}',N'{elements[5]}',N'{elements[6]}',N'{elements[7]}',N'{elements[8]}',N'{elements[9]}')");
+                string sqlQuery = stringBuilder.ToString();
+
+                using (SqlCommand command = new SqlCommand(sqlQuery, SetSQLConnection()))
+                {
+                    command.ExecuteNonQuery();
+                    Print.WriteLine("verileriniz başarıyla veritabanına eklendi", ConsoleColor.Yellow);
+                }
+            }
+        }
     }
 }

@@ -18,6 +18,7 @@ namespace EvAlmak.Evler
         public override double VillaFiyatHesaplama()
         {
             double toplam = EvGenelFiyatHesaplama();
+            // Dubleks fiyat başlangiç seviyesi
             toplam += 20_000d;
 
             if (Bahce > 0)
@@ -26,7 +27,7 @@ namespace EvAlmak.Evler
             }
             else if (Bahce <= 0)
             {
-                // bir şey yapma!
+                // Hiçbir şey yapma!
             }
 
             if (Sauna)
