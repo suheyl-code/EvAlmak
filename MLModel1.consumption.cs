@@ -7,10 +7,10 @@ using System.IO;
 using System.Collections.Generic;
 namespace EvAlmak
 {
-    public partial class MLModel2
+    public partial class MLModel1
     {
         /// <summary>
-        /// model input class for MLModel2.
+        /// model input class for MLModel1.
         /// </summary>
         #region model input class
         public class ModelInput
@@ -50,7 +50,7 @@ namespace EvAlmak
         #endregion
 
         /// <summary>
-        /// model output class for MLModel2.
+        /// model output class for MLModel1.
         /// </summary>
         #region model output class
         public class ModelOutput
@@ -59,7 +59,7 @@ namespace EvAlmak
         }
         #endregion
 
-        private static string MLNetModelPath = Path.GetFullPath("MLModel2.zip");
+        private static string MLNetModelPath = Path.GetFullPath("MLModel1.zip");
 
         public static readonly Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(() => CreatePredictEngine(), true);
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace EvAlmak
 {
     internal class Program
@@ -155,6 +156,9 @@ namespace EvAlmak
                     Print.WriteLine($"\n*** İstanbul'da benzer dubleks evler ortalama {fiyat:C2} dir. ***", ConsoleColor.Blue);
 
                     WriteToSQLTableDubleks(kat, cephe, bahce, banyo, balkon, sauna, sumine, numberOfChimney, fitness, fiyat);
+
+                    
+
                     break;
                 default:
                     break;

@@ -10,7 +10,7 @@ using Microsoft.ML;
 
 namespace EvAlmak
 {
-    public partial class MLModel2
+    public partial class MLModel1
     {
         public static ITransformer RetrainPipeline(MLContext context, IDataView trainData)
         {
@@ -35,7 +35,7 @@ namespace EvAlmak
                                     .Append(mlContext.Transforms.Text.FeaturizeText(@"Fitness", @"Fitness"))      
                                     .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"Floor",@"Size",@"Bath",@"Balcony",@"NumberOfChimney",@"Direction",@"Sauna",@"Chimney",@"Fitness"}))      
                                     .Append(mlContext.Transforms.NormalizeMinMax(@"Features", @"Features"))      
-                                    .Append(mlContext.Regression.Trainers.Sdca(l1Regularization:0.238669003936794F,l2Regularization:75.8983178060286F,labelColumnName:@"Price",featureColumnName:@"Features"));
+                                    .Append(mlContext.Regression.Trainers.Sdca(l1Regularization:0.03125F,l2Regularization:9590.28107628667F,labelColumnName:@"Price",featureColumnName:@"Features"));
 
             return pipeline;
         }

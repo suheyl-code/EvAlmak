@@ -137,18 +137,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="MLModel2.mbconfig" />
+    <None Include="MLModel1.mbconfig" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup Label="MLModel2">
-    <None Include="MLModel2.consumption.cs">
-      <DependentUpon>MLModel2.mbconfig</DependentUpon>
+  <ItemGroup Label="MLModel1">
+    <None Include="MLModel1.consumption.cs">
+      <DependentUpon>MLModel1.mbconfig</DependentUpon>
     </None>
-    <None Include="MLModel2.training.cs">
-      <DependentUpon>MLModel2.mbconfig</DependentUpon>
+    <None Include="MLModel1.training.cs">
+      <DependentUpon>MLModel1.mbconfig</DependentUpon>
     </None>
-    <None Include="MLModel2.zip">
-      <DependentUpon>MLModel2.mbconfig</DependentUpon>
+    <None Include="MLModel1.zip">
+      <DependentUpon>MLModel1.mbconfig</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
