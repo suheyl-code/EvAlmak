@@ -22,6 +22,10 @@ namespace EvAlmak.Evler
             this.Bahce = bahce;
         }
 
+        /// <summary>
+        /// Mustakil Ev Muhasebe İşlemleri
+        /// </summary>
+        /// <returns>double</returns>
         public double MustakilFiyatHesaplama()
         {
             double toplam = EvGenelFiyatHesaplama();

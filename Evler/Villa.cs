@@ -58,9 +58,12 @@ namespace EvAlmak.Evler
             this.Sumine = sumine;
             this.NumberOfChimney = numberOfChimney;
             this.FitnessSalon = fitness;
-
         }
 
+        /// <summary>
+        /// Villa Ev Muhasebe İşlemleri, Bu (base - virtual)
+        /// </summary>
+        /// <returns>double</returns>
         public virtual double VillaFiyatHesaplama()
         {
             double toplam = EvGenelFiyatHesaplama();

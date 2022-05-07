@@ -8,6 +8,11 @@ namespace EvAlmak.ColorConsole
 {
     internal static class Print
     {
+        /// <summary>
+        /// Kişisel Renkli Console.Write 
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="color"></param>
         public static void Write(string msg, ConsoleColor color)
         {
             Console.ForegroundColor = color;
@@ -15,6 +20,11 @@ namespace EvAlmak.ColorConsole
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
+        /// <summary>
+        /// Kişisel Renkli Console.WriteLine
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="color"></param>
         public static void WriteLine(string msg, ConsoleColor color)
         {
             Console.ForegroundColor = color;

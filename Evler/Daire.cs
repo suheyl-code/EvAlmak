@@ -13,6 +13,10 @@ namespace EvAlmak.Evler
 
         }
 
+        /// <summary>
+        /// Daire Muhasebe İşlemleri
+        /// </summary>
+        /// <returns>double</returns>
         public double DaireFiyatHesaplama()
         {
             double EvGenelFiyatHesapla = EvGenelFiyatHesaplama();

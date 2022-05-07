@@ -15,6 +15,10 @@ namespace EvAlmak.Evler
 
         }
 
+        /// <summary>
+        /// Dubleks Ev Muhasebe İşlemleri: Villa (base - virtual), bu (Override)
+        /// </summary>
+        /// <returns>double</returns>
         public override double VillaFiyatHesaplama()
         {
             double toplam = EvGenelFiyatHesaplama();

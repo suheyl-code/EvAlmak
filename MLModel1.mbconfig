@@ -105,94 +105,87 @@
         "Type": "Trial",
         "TrainerName": "FastForestRegression",
         "Score": 0.0,
-        "RuntimeInSeconds": 0.71399998664855957
-      },
-      {
-        "Version": 0,
-        "Type": "Trial",
-        "TrainerName": "FastTreeTweedieRegression",
-        "Score": -3306493.7762205005,
-        "RuntimeInSeconds": 0.73000001907348633
-      },
-      {
-        "Version": 0,
-        "Type": "Trial",
-        "TrainerName": "SdcaRegression",
-        "Score": 5016608.0304572918,
-        "RuntimeInSeconds": 3.0710000991821289
-      },
-      {
-        "Version": 0,
-        "Type": "Trial",
-        "TrainerName": "LightGbmRegression",
-        "Score": -27580.271153420908,
-        "RuntimeInSeconds": 0.47499999403953552
+        "RuntimeInSeconds": 1.4220000505447388
       },
       {
         "Version": 0,
         "Type": "Trial",
         "TrainerName": "FastTreeRegression",
         "Score": -3306672.2558505018,
-        "RuntimeInSeconds": 0.81499999761581421
+        "RuntimeInSeconds": 0.66100001335144043
       },
       {
         "Version": 0,
         "Type": "Trial",
         "TrainerName": "SdcaRegression",
-        "Score": 4761294.6550727254,
-        "RuntimeInSeconds": 3.3450000286102295
+        "Score": 4930538.6175169144,
+        "RuntimeInSeconds": 3.2890000343322754
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastTreeTweedieRegression",
+        "Score": -3306493.7762205005,
+        "RuntimeInSeconds": 0.8529999852180481
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LightGbmRegression",
+        "Score": -27580.271153420908,
+        "RuntimeInSeconds": 0.5429999828338623
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaRegression",
+        "Score": 4192424.8428374184,
+        "RuntimeInSeconds": 4.5460000038146973
       },
       {
         "Version": 0,
         "Type": "Trial",
         "TrainerName": "LbfgsPoissonRegressionRegression",
         "Score": 147917.48042994278,
-        "RuntimeInSeconds": 0.44800001382827759
+        "RuntimeInSeconds": 0.62400001287460327
       },
       {
         "Version": 0,
         "Type": "Trial",
         "TrainerName": "SdcaRegression",
-        "Score": 5161182.26769811,
-        "RuntimeInSeconds": 3.0139999389648438
+        "Score": 5007417.14565972,
+        "RuntimeInSeconds": 3.6909999847412109
       },
       {
         "Version": 0,
         "Type": "Trial",
         "TrainerName": "SdcaRegression",
-        "Score": 5160468.7014842983,
-        "RuntimeInSeconds": 3.1010000705718994
+        "Score": 4838180.4052279769,
+        "RuntimeInSeconds": 4.2369999885559082
       },
       {
         "Version": 0,
         "Type": "Trial",
         "TrainerName": "SdcaRegression",
-        "Score": 5249160.1793467812,
-        "RuntimeInSeconds": 2.98799991607666
+        "Score": 7002032.5252360608,
+        "RuntimeInSeconds": 4.2529997825622559
       },
       {
         "Version": 0,
         "Type": "Trial",
         "TrainerName": "SdcaRegression",
-        "Score": 6513137.1037642313,
-        "RuntimeInSeconds": 5.03000020980835
+        "Score": 6650776.5322125945,
+        "RuntimeInSeconds": 5.1880002021789551
       },
       {
         "Version": 0,
         "Type": "Trial",
         "TrainerName": "SdcaRegression",
-        "Score": 6632002.3083022442,
-        "RuntimeInSeconds": 3.119999885559082
-      },
-      {
-        "Version": 0,
-        "Type": "Trial",
-        "TrainerName": "SdcaRegression",
-        "Score": 1968410.3705600582,
-        "RuntimeInSeconds": 13.12600040435791
+        "Score": 6808044.7439601962,
+        "RuntimeInSeconds": 3.2990000247955322
       }
     ],
-    "Pipeline": "[{\"EstimatorType\":\"ReplaceMissingValues\",\"Inputs\":[\"Floor\",\"Size\",\"Bath\",\"Balcony\",\"NumberOfChimney\"],\"Outputs\":[\"Floor\",\"Size\",\"Bath\",\"Balcony\",\"NumberOfChimney\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Direction\"],\"Outputs\":[\"Direction\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Sauna\"],\"Outputs\":[\"Sauna\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Chimney\"],\"Outputs\":[\"Chimney\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Fitness\"],\"Outputs\":[\"Fitness\"]},{\"EstimatorType\":\"Concatenate\",\"Inputs\":[\"Floor\",\"Size\",\"Bath\",\"Balcony\",\"NumberOfChimney\",\"Direction\",\"Sauna\",\"Chimney\",\"Fitness\"],\"Outputs\":[\"Features\"]},{\"EstimatorType\":\"NormalizeMinMax\",\"Inputs\":[\"Features\"],\"Outputs\":[\"Features\"]},{\"LabelColumnName\":\"Price\",\"FeatureColumnName\":\"Features\",\"L1Regularization\":\"0.03125\",\"L2Regularization\":\"9590.28107628667\",\"EstimatorType\":\"SdcaRegression\",\"Inputs\":[\"Price\"],\"Outputs\":[\"Features\"]}]",
+    "Pipeline": "[{\"EstimatorType\":\"ReplaceMissingValues\",\"Inputs\":[\"Floor\",\"Size\",\"Bath\",\"Balcony\",\"NumberOfChimney\"],\"Outputs\":[\"Floor\",\"Size\",\"Bath\",\"Balcony\",\"NumberOfChimney\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Direction\"],\"Outputs\":[\"Direction\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Sauna\"],\"Outputs\":[\"Sauna\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Chimney\"],\"Outputs\":[\"Chimney\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"Fitness\"],\"Outputs\":[\"Fitness\"]},{\"EstimatorType\":\"Concatenate\",\"Inputs\":[\"Floor\",\"Size\",\"Bath\",\"Balcony\",\"NumberOfChimney\",\"Direction\",\"Sauna\",\"Chimney\",\"Fitness\"],\"Outputs\":[\"Features\"]},{\"EstimatorType\":\"NormalizeMinMax\",\"Inputs\":[\"Features\"],\"Outputs\":[\"Features\"]},{\"LabelColumnName\":\"Price\",\"FeatureColumnName\":\"Features\",\"L1Regularization\":\"0.465632903335694\",\"L2Regularization\":\"0.519472102781485\",\"EstimatorType\":\"SdcaRegression\",\"Inputs\":[\"Price\"],\"Outputs\":[\"Features\"]}]",
     "MetricName": "RSquared"
   },
   "Type": "TrainingConfig",

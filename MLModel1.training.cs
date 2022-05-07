@@ -35,7 +35,7 @@ namespace EvAlmak
                                     .Append(mlContext.Transforms.Text.FeaturizeText(@"Fitness", @"Fitness"))      
                                     .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"Floor",@"Size",@"Bath",@"Balcony",@"NumberOfChimney",@"Direction",@"Sauna",@"Chimney",@"Fitness"}))      
                                     .Append(mlContext.Transforms.NormalizeMinMax(@"Features", @"Features"))      
-                                    .Append(mlContext.Regression.Trainers.Sdca(l1Regularization:0.03125F,l2Regularization:9590.28107628667F,labelColumnName:@"Price",featureColumnName:@"Features"));
+                                    .Append(mlContext.Regression.Trainers.Sdca(l1Regularization:0.465632903335694F,l2Regularization:0.519472102781485F,labelColumnName:@"Price",featureColumnName:@"Features"));
 
             return pipeline;
         }

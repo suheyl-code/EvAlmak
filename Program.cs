@@ -17,6 +17,9 @@ namespace EvAlmak
             Run();
         }
 
+        /// <summary>
+        /// Program'ın başlangiç noktası
+        /// </summary>
         private static void Run()
         {
             Console.WriteLine("Ev netur olsun ");
@@ -156,8 +159,6 @@ namespace EvAlmak
                     Print.WriteLine($"\n*** İstanbul'da benzer dubleks evler ortalama {fiyat:C2} dir. ***", ConsoleColor.Blue);
 
                     WriteToSQLTableDubleks(kat, cephe, bahce, banyo, balkon, sauna, sumine, numberOfChimney, fitness, fiyat);
-
-                    
 
                     break;
                 default:
@@ -312,8 +313,9 @@ namespace EvAlmak
         }
 
         /// <summary>
-        /// 
+        /// SQL bağlantı yapıyor ve onu dünöyür.
         /// </summary>
+        /// <returns>SqlConnection</returns>
         private static SqlConnection SetSQLConnection()
         {
             var deviceName = Environment.MachineName.ToString();

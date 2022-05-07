@@ -55,9 +55,12 @@ namespace EvAlmak.Evler
             this.Banyo = banyo;
             this.Balkon = balkon;
             this.Kat = kat;
-
         }
 
+        /// <summary>
+        /// Genel olarak Muhasebe İşlemleri
+        /// </summary>
+        /// <returns>double</returns>
         public double EvGenelFiyatHesaplama()
         {
             double toplam = 22_000d;
